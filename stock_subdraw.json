@@ -1,0 +1,41 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/order/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku": "icode",
+        "name": "item_name",
+        "qty": "stock_package_qty",
+        "unittext": "item_unit",
+        "qty_unit": "stock_subdraw_qty",
+        "pricepernumber": "stock_subdraw_unitcost",
+        "totalprice": "stock_subdraw_price"
+    },
+    "param": {
+        "orderno": "stock_subdraw_id",  
+        "ordertype": {
+            "value": "0"
+        },
+        "reference": "stock_draw_ref_no",
+        "whcodesource": "warehouse_id",
+        "whcodedest":"department_id",
+        "description": "subdraw_note",
+        "createusername": "stock_subdraw_officer_name",
+        "approveusername": "stock_subdraw_approve_name",
+        "orderdate": "stock_subdraw_date",
+        "approvestatus": "stock_subdraw_approve",
+        "qty_item": "item_count",
+        "value": "total_price",
+        "orderstatus": "stock_subdraw_complete"
+    },
+    "sql_param": "select stock_subdraw_id,stock_draw_ref_no ,warehouse_id,department_id,subdraw_note,stock_subdraw_officer_name,stock_subdraw_approve_name,stock_subdraw_approve_date,stock_subdraw_approve,item_count,total_price ,stock_subdraw_complete,stock_subdraw_date from stock_subdraw where stock_subdraw_complete = 'Y'",
+    "sql_body":"select i.icode , i.item_name , sl.stock_package_qty ,i.item_unit, sl.stock_subdraw_qty ,sl.stock_subdraw_unitcost ,sl.stock_subdraw_price,sl.stock_subdraw_id from stock_subdraw_list as sl left join stock_item as i on i.item_id =sl.item_id ",
+    "sql_param_id": "stock_subdraw_id",
+    "sql_body_id": "stock_subdraw_id",
+    "sql_param_name": "stock_subdraw_id",
+    "sql_body_name": "stock_subdraw_id"
+}

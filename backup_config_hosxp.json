@@ -1,0 +1,726 @@
+{
+    "stock_draw": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "orderno": "stock_draw_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "draw_qty",
+                "unittext": "item_unit"
+            },
+            "param": {
+                "orderno": "stock_draw_id",
+                "ordertype": {
+                    "value": 0
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "warehouse_id",
+                "whcodedest": "department_id",
+                "description": {
+                    "value": null
+                },
+                "updatedatetime": "update_datetime",
+                "createusername": "stock_draw_officer_name",
+                "orderdate": "stock_draw_date"
+            },
+            "sql_param": "select * from hos.stock_draw sd inner join hos.stock_draw_item sdi on sd.stock_draw_id = sdi.stock_draw_id inner join hos.stock_item si on si.item_id = sdi.item_id",
+            "sql_body": "select sdi.stock_draw_id, sdi.item_id, sdi.draw_qty, si.item_name, si.item_unit from stock_draw_item sdi join stock_item si on sdi.item_id = si.item_id",
+            "sql_param_id": "stock_draw_id",
+            "sql_param_name": "sd.stock_draw_id",
+            "sql_body_id": "stock_draw_id",
+            "sql_body_name": "sdi.stock_draw_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "orderno": "stock_draw_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "draw_qty",
+                "unittext": "item_unit"
+            },
+            "param": {
+                "orderno": "stock_draw_id",
+                "ordertype": {
+                    "value": 0
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "warehouse_id",
+                "whcodedest": "department_id",
+                "description": {
+                    "value": null
+                },
+                "updatedatetime": "update_datetime",
+                "createusername": "stock_draw_officer_name",
+                "orderdate": "stock_draw_date"
+            },
+            "sql_param": "select * from hos.stock_draw sd inner join hos.stock_draw_item sdi on sd.stock_draw_id = sdi.stock_draw_id inner join hos.stock_item si on si.item_id = sdi.item_id",
+            "sql_body": "select sdi.stock_draw_id, sdi.item_id, sdi.draw_qty, si.item_name, si.item_unit from stock_draw_item sdi join stock_item si on sdi.item_id = si.item_id",
+            "sql_param_id": "stock_draw_id",
+            "sql_param_name": "sd.stock_draw_id",
+            "sql_body_id": "stock_draw_id",
+            "sql_body_name": "sdi.stock_draw_id"
+        }
+    },
+    "stock_item": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/stockmaster/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "item_id",
+                "name": "item_name",
+                "description": "item_note",
+                "barcode": "barcode_number",
+                "imagepath": "item_picture",
+                "weight": "unit_cost",
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "unittext": "item_unit"
+            },
+            "sql": "SELECT s.item_id, s.item_name, s.item_note, s.barcode_number, sp.item_picture ,s.unit_cost, s.item_unit, st.item_type, st.item_type_name FROM stock_item s join stock_item_type st on s.item_type = st.item_type left join stock_item_picture sp on s.item_id = sp.item_id",
+            "sql_body_id": "item_id",
+            "sql_body_name": "s.item_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/stockmaster/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "item_id",
+                "name": "item_name",
+                "description": "item_note",
+                "barcode": "barcode_number",
+                "imagepath": "item_picture",
+                "weight": "unit_cost",
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "unittext": "item_unit"
+            },
+            "sql": "SELECT s.item_id, s.item_name, s.item_note, s.barcode_number, sp.item_picture ,s.unit_cost, s.item_unit, st.item_type, st.item_type_name FROM stock_item s join stock_item_type st on s.item_type = st.item_type left join stock_item_picture sp on s.item_id = sp.item_id",
+            "sql_body_id": "item_id",
+            "sql_body_name": "s.item_id"
+        }
+    },
+    "stock_deliver": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/receive/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "receiveno": "stock_deliver_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "stock_deliver_qty",
+                "unittext": "item_unit",
+                "lot": "stock_deliver_lotno",
+                "expire_date": "stock_deliver_expire"
+            },
+            "param": {
+                "receiveno": "stock_deliver_detail_id",
+                "receivetype": {
+                    "value": null
+                },
+                "reference": "stock_po_id",
+                "reference2": {
+                    "value": null
+                },
+                "warehousecode": "warehouse_id",
+                "createusername": {
+                    "value": null
+                },
+                "receivedatetime": "stock_receive_date"
+            },
+            "sql_param": "select sd.stock_po_id,sdd.stock_deliver_detail_id, spt.acc_po_payment_type_id, po.warehouse_id, sd.officer_id,sd.stock_receive_date from hos.stock_deliver_detail as sdd inner join hos.stock_deliver as sd on sd.stock_deliver_id = sdd.stock_deliver_id left join hos.stock_po as po on po.stock_po_id = sd.stock_po_id left join hos.stock_paid_type as spt on spt.stock_paid_type_id = po.stock_paid_type_id",
+            "sql_body": "select sdd.stock_deliver_id, si.item_id, si.item_name, sdd.stock_deliver_qty, si.item_unit, sdd.stock_deliver_lotno, sdd.stock_deliver_expire from hos.stock_deliver_detail as sdd inner join hos.stock_po_detail as spd on sdd.stock_po_detail_id = spd.stock_po_detail_id inner join hos.stock_item as si on si.item_id = spd.item_id",
+            "sql_param_id": "stock_deliver_detail_id",
+            "sql_param_name": "sdd.stock_deliver_detail_id",
+            "sql_body_id": "stock_deliver_id",
+            "sql_body_name": "sdd.stock_deliver_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/receive/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "receiveno": "stock_deliver_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "stock_deliver_qty",
+                "unittext": "item_unit",
+                "lot": "stock_deliver_lotno",
+                "expire_date": "stock_deliver_expire"
+            },
+            "param": {
+                "receiveno": "stock_deliver_detail_id",
+                "receivetype": {
+                    "value": null
+                },
+                "reference": "stock_po_id",
+                "reference2": {
+                    "value": null
+                },
+                "warehousecode": "warehouse_id",
+                "createusername": {
+                    "value": null
+                },
+                "receivedatetime": "stock_receive_date"
+            },
+            "sql_param": "select sd.stock_po_id,sdd.stock_deliver_detail_id, spt.acc_po_payment_type_id, po.warehouse_id, sd.officer_id,sd.stock_receive_date from hos.stock_deliver_detail as sdd inner join hos.stock_deliver as sd on sd.stock_deliver_id = sdd.stock_deliver_id left join hos.stock_po as po on po.stock_po_id = sd.stock_po_id left join hos.stock_paid_type as spt on spt.stock_paid_type_id = po.stock_paid_type_id",
+            "sql_body": "select sdd.stock_deliver_id, si.item_id, si.item_name, sdd.stock_deliver_qty, si.item_unit, sdd.stock_deliver_lotno, sdd.stock_deliver_expire from hos.stock_deliver_detail as sdd inner join hos.stock_po_detail as spd on sdd.stock_po_detail_id = spd.stock_po_detail_id inner join hos.stock_item as si on si.item_id = spd.item_id",
+            "sql_param_id": "stock_deliver_detail_id",
+            "sql_param_name": "sdd.stock_deliver_detail_id",
+            "sql_body_id": "stock_deliver_id",
+            "sql_body_name": "sdd.stock_deliver_id"
+        }
+    },
+    "stock_department": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/warehouse/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "wh_code": "department_id",
+                "wh_name": "department_name",
+                "wh_status": "status_active",
+                "wh_type": {
+                    "value": 1
+                }
+            },
+            "sql":"SELECT * from stock_department",
+            "sql_body_id": "department_id",
+            "sql_body_name": "department_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/warehouse/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "wh_code": "department_id",
+                "wh_name": "department_name",
+                "wh_status": "status_active",
+                "wh_type": {
+                    "value": 1
+                }
+            },
+            "sql":"SELECT * from stock_department",
+            "sql_body_id": "department_id",
+            "sql_body_name": "department_id"
+        }
+    },
+    "stock_item_type": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/category/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "categorystatus": {
+                    "value": true
+                }
+            },
+            "sql": "select * from stock_item_type",
+            "sql_body_id": "item_type",
+            "sql_body_name": "item_type"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/category/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "categorystatus": {
+                    "value": true
+                }
+            },
+            "sql": "select * from stock_item_type",
+            "sql_body_id": "item_type",
+            "sql_body_name": "item_type"
+        }
+    },
+    "stock_po": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/purchaseorder/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "pono": "stock_po_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "stock_po_qty",
+                "unittext": "item_unit",
+                "pricepernumber": "stock_po_price",
+                "totalprice": "stock_po_total"
+            },
+            "param": {
+                "pono": "stock_po_id",
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customeemail": "supplier_email",
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": "pr_ref_no",
+                "warehouse": {
+                    "value": 1
+                },
+                "status": "stock_po_confirm",
+                "amount": "po_amount",
+                "vatamount": "stock_po_vat",
+                "shippingdate": "delivery_ref_date",
+                "purchaseorderdate": "stock_po_date",
+                "description": "note",
+                "discount": "stock_po_discount",
+                "discountamount": "stock_po_discount_total",
+                "vatpercent": "vat_percent",
+                "createusername": {
+                    "value": null
+                },
+                "podate": "stock_po_date",
+                "updatedatetime": {
+                    "value": null
+                }
+            },
+            "sql_param": "select sp.stock_po_id, si.supplier_id, si.supplier_name, si.supplier_email, si.supplier_phone, si.supplier_address1, sp.reference_id, sp.warehouse_id, sp.stock_po_confirm, sp.po_amount, sp.stock_po_vat_amount, sp.delivery_ref_date, sp.stock_po_date, sp.note, sp.stock_po_discount, sp.stock_po_discount_total, sr.vat_percent, sd.officer_id, sd.examine_date from hos.stock_po as sp inner join hos.stock_deliver as sd on sd.stock_po_id = sp.stock_po_id inner join hos.stock_request as sr on sr.stock_po_id = sp.stock_po_id inner join hos.stock_supplier as si on si.warehouse_id = sp.warehouse_id",
+            "sql_body": "select sp.stock_po_id , si.item_id, si.item_name, spd.stock_po_qty, si.item_unit, spd.stock_po_price, spd.stock_po_total from hos.stock_po as sp inner join hos.stock_po_detail as spd on sp.stock_po_id = spd.stock_po_id left join hos.stock_item as si on spd.item_id = si.item_id",
+            "sql_param_id": "stock_po_id",
+            "sql_param_name": "sp.stock_po_id",
+            "sql_body_id": "stock_po_id",
+            "sql_body_name": "sp.stock_po_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/purchaseorder/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "pono": "stock_po_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "stock_po_qty",
+                "unittext": "item_unit",
+                "pricepernumber": "stock_po_price",
+                "totalprice": "stock_po_total"
+            },
+            "param": {
+                "pono": "stock_po_id",
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customeemail": "supplier_email",
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": "pr_ref_no",
+                "warehouse": {
+                    "value": 1
+                },
+                "status": "stock_po_confirm",
+                "amount": "po_amount",
+                "vatamount": "stock_po_vat",
+                "shippingdate": "delivery_ref_date",
+                "purchaseorderdate": "stock_po_date",
+                "description": "note",
+                "discount": "stock_po_discount",
+                "discountamount": "stock_po_discount_total",
+                "vatpercent": "vat_percent",
+                "createusername": {
+                    "value": null
+                },
+                "podate": "stock_po_date",
+                "updatedatetime": {
+                    "value": null
+                }
+            },
+            "sql_param": "select sp.stock_po_id, si.supplier_id, si.supplier_name, si.supplier_email, si.supplier_phone, si.supplier_address1, sp.reference_id, sp.warehouse_id, sp.stock_po_confirm, sp.po_amount, sp.stock_po_vat_amount, sp.delivery_ref_date, sp.stock_po_date, sp.note, sp.stock_po_discount, sp.stock_po_discount_total, sr.vat_percent, sd.officer_id, sd.examine_date from hos.stock_po as sp inner join hos.stock_deliver as sd on sd.stock_po_id = sp.stock_po_id inner join hos.stock_request as sr on sr.stock_po_id = sp.stock_po_id inner join hos.stock_supplier as si on si.warehouse_id = sp.warehouse_id",
+            "sql_body": "select sp.stock_po_id , si.item_id, si.item_name, spd.stock_po_qty, si.item_unit, spd.stock_po_price, spd.stock_po_total from hos.stock_po as sp inner join hos.stock_po_detail as spd on sp.stock_po_id = spd.stock_po_id left join hos.stock_item as si on spd.item_id = si.item_id",
+            "sql_param_id": "stock_po_id",
+            "sql_param_name": "sp.stock_po_id",
+            "sql_body_id": "stock_po_id",
+            "sql_body_name": "sp.stock_po_id"
+        }
+    },
+    "stock_request": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/pr/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "prno": "request_id",
+                "sku": "item_id",
+                "qty": "request_qty",
+                "name": "item_name",
+                "unittext": "item_unit",
+                "pricepernumber": "request_list_unit_price",
+                "totalprice": "request_list_total_price"
+            },
+            "param": {
+                "prno": "request_id",
+                "custormerid": "supplier_id",
+                "customercode": "company_code",
+                "customername": "supplier_name",
+                "customeremail": {
+                    "value": "null"
+                },
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": {
+                    "value": "null"
+                },
+                "warehouse": "warehouse_id",
+                "status": "request_complete",
+                "amount": {
+                    "value": 0
+                },
+                "vatamount": {
+                    "value": 0
+                },
+                "shippingamount": {
+                    "value": 0
+                },
+                "shippingvat": "supplier_vat",
+                "shippingdate": {
+                    "value": ""
+                },
+                "prdate": "request_date",
+                "description": {
+                    "value": "pr detail"
+                },
+                "discount": "stock_request_item_discount",
+                "discountamount": "stock_request_item_money_discount",
+                "vatpercent": "vat_percent",
+                "createusername": "null",
+                "createdatetime": "request_date"
+            },
+            "sql_param": "select sr.request_id,sr.supplier_id,sr.request_date,ss.supplier_name ,ss.supplier_email,ss.supplier_phone,ss.supplier_address1, ss.supplier_note,ss.warehouse_id,sr.request_all_complete,srl.total_po_qty,srl.request_qty,sr.vat_percent,srl.stock_request_item_money_discount,srl.stock_request_item_discount from hos.stock_request_list srl join hos.stock_supplier ss on srl.supplier_id = ss.supplier_id inner join hos.stock_request sr on sr.request_id = srl.request_id inner join hos.stock_po_detail sp on sp.stock_po_id = sr.stock_po_id",
+            "sql_body": "select srl.request_id, si.item_id, srl.request_qty, si.item_name, si.item_unit, srl.request_list_unit_price, srl.request_list_total_price from hos.stock_request_list srl left join hos.stock_item si on srl.item_id = si.item_id",
+            "sql_param_id": "request_id",
+            "sql_param_name": "sr.request_id",
+            "sql_body_id": "request_id",
+            "sql_body_name": "srl.request_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/pr/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "prno": "request_id",
+                "sku": "item_id",
+                "qty": "request_qty",
+                "name": "item_name",
+                "unittext": "item_unit",
+                "pricepernumber": "request_list_unit_price",
+                "totalprice": "request_list_total_price"
+            },
+            "param": {
+                "prno": "request_id",
+                "custormerid": "supplier_id",
+                "customercode": "company_code",
+                "customername": "supplier_name",
+                "customeremail": {
+                    "value": "null"
+                },
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": {
+                    "value": "null"
+                },
+                "warehouse": "warehouse_id",
+                "status": "request_complete",
+                "amount": {
+                    "value": 0
+                },
+                "vatamount": {
+                    "value": 0
+                },
+                "shippingamount": {
+                    "value": 0
+                },
+                "shippingvat": "supplier_vat",
+                "shippingdate": {
+                    "value": "2022-12-20"
+                },
+                "prdate": "request_date",
+                "description": {
+                    "value": "pr detail"
+                },
+                "discount": "stock_request_item_discount",
+                "discountamount": "stock_request_item_money_discount",
+                "vatpercent": "vat_percent",
+                "createusername": "null",
+                "createdatetime": "request_date"
+            },
+            "sql_param": "select sr.request_id,sr.supplier_id,sr.request_date,ss.supplier_name ,ss.supplier_email,ss.supplier_phone,ss.supplier_address1, ss.supplier_note,ss.warehouse_id,sr.request_all_complete,srl.total_po_qty,srl.request_qty,sr.vat_percent,srl.stock_request_item_money_discount,srl.stock_request_item_discount from hos.stock_request_list srl join hos.stock_supplier ss on srl.supplier_id = ss.supplier_id inner join hos.stock_request sr on sr.request_id = srl.request_id inner join hos.stock_po_detail sp on sp.stock_po_id = sr.stock_po_id",
+            "sql_body": "select srl.request_id, si.item_id, srl.request_qty, si.item_name, si.item_unit, srl.request_list_unit_price, srl.request_list_total_price from hos.stock_request_list srl left join hos.stock_item si on srl.item_id = si.item_id",
+            "sql_param_id": "request_id",
+            "sql_param_name": "sr.request_id",
+            "sql_body_id": "request_id",
+            "sql_body_name": "srl.request_id"
+        }
+    },
+    "stock_subdraw": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "orderno": "stock_subdraw_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "stock_subdraw_qty",
+                "unittext": "item_unit"
+            },
+            "param": {
+                "orderno": "stock_subdraw_id",
+                "ordertype": {
+                    "value": 1
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "department_id",
+                "whcodedest": {
+                    "value": null
+                },
+                "description": {
+                    "value": null
+                },
+                "createusername": "stock_subdraw_officer_name",
+                "updatedatetime": "update_datetime",
+                "orderdate": "stock_subdraw_date"
+            },
+            "sql_param": "select * from hos.stock_subdraw ssd inner join hos.stock_subdraw_list ssdl on ssd.stock_subdraw_id = ssdl.stock_subdraw_id inner join hos.stock_item si on si.item_id = ssdl.item_id",
+            "sql_body": "select ssdl.stock_subdraw_id, si.item_id,si.item_name,ssdl.stock_subdraw_qty,si.item_unit from hos.stock_subdraw_list ssdl inner join stock_item si on ssdl.item_id=si.item_id",
+            "sql_param_id": "stock_subdraw_id",
+            "sql_param_name": "ssd.stock_subdraw_id",
+            "sql_body_id": "stock_subdraw_id",
+            "sql_body_name": "ssdl.stock_subdraw_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "orderno": "stock_subdraw_id",
+                "sku": "item_id",
+                "name": "item_name",
+                "qty": "stock_subdraw_qty",
+                "unittext": "item_unit"
+            },
+            "param": {
+                "orderno": "stock_subdraw_id",
+                "ordertype": {
+                    "value": 1
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "department_id",
+                "whcodedest": {
+                    "value": null
+                },
+                "description": {
+                    "value": null
+                },
+                "createusername": "stock_subdraw_officer_name",
+                "updatedatetime": "update_datetime",
+                "orderdate": "stock_subdraw_date"
+            },
+            "sql_param": "select * from hos.stock_subdraw ssd inner join hos.stock_subdraw_list ssdl on ssd.stock_subdraw_id = ssdl.stock_subdraw_id inner join hos.stock_item si on si.item_id = ssdl.item_id",
+            "sql_body": "select ssdl.stock_subdraw_id, si.item_id,si.item_name,ssdl.stock_subdraw_qty,si.item_unit from hos.stock_subdraw_list ssdl inner join stock_item si on ssdl.item_id=si.item_id",
+            "sql_param_id": "stock_subdraw_id",
+            "sql_param_name": "ssd.stock_subdraw_id",
+            "sql_body_id": "stock_subdraw_id",
+            "sql_body_name": "ssdl.stock_subdraw_id"
+        }
+    },
+    "stock_supplier": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/customer/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customerphone": "supplier_phone",
+                "customeremail": "supplier_email",
+                "customeraddress": "supplier_address1",
+                "categorystatus": {
+                    "value": null
+                }
+            },
+            "sql":"SELECT * from stock_supplier",
+            "sql_body_id": "supplier_id",
+            "sql_body_name": "supplier_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/customer/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customerphone": "supplier_phone",
+                "customeremail": "supplier_email",
+                "customeraddress": "supplier_address1",
+                "categorystatus": {
+                    "value": null
+                }
+            },
+            "sql":"SELECT * from stock_supplier",
+            "sql_body_id": "supplier_id",
+            "sql_body_name": "supplier_id"
+        }
+    },
+    "doctor_order_print": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "orderno": "doctor_order_print_code",
+                "sku": "vn",
+                "name": "patient_name",
+                "qty": "qty_int",
+                "unittext": {
+                    "value": null
+                }
+            },
+            "param": {
+                "orderno": "doctor_order_print_code",
+                "ordertype": {
+                    "value": 2
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "department_id",
+                "whcodedest": {
+                    "value": null
+                },
+                "description": "shortlist",
+                "createusername": "doctor_name",
+                "updatedatetime": "update_datetime",
+                "orderdate": "doctor_order_print_date_time"
+            },
+            "sql_body": "select doctor_order_print_code,vn,patient_name,qty_int from doctor_order_print",
+            "sql_param": "select doc.doctor_order_print_code, sd.stock_draw_type_id,sd.warehouse_id,sd.department_id, sd.stock_draw_ref_no, doc.doctor_name, doc.doctor_order_print_date_time,si.update_datetime from hos.doctor_order_print as doc inner join hos.stock_item as si on si.icode = doc.icode inner join hos.stock_draw_item sdi on si.item_id = sdi.item_id inner join hos.stock_draw sd on sd.stock_draw_id = sdi.stock_draw_id",
+            "sql_param_id": "doctor_order_print_code",
+            "sql_param_name": "doctor_order_print_code",
+            "sql_body_id": "doctor_order_print_code",
+            "sql_body_name": "doc.doctor_order_print_code"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "orderno": "doctor_order_print_code",
+                "sku": "vn",
+                "name": "patient_name",
+                "qty": "qty_int",
+                "unittext": {
+                    "value": null
+                }
+            },
+            "param": {
+                "orderno": "doctor_order_print_code",
+                "ordertype": {
+                    "value": 2
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "department_id",
+                "whcodedest": {
+                    "value": null
+                },
+                "description": "shortlist",
+                "createusername": "doctor_name",
+                "updatedatetime": "update_datetime",
+                "orderdate": "doctor_order_print_date_time"
+            },
+            "sql_body": "select doctor_order_print_code,vn,patient_name,qty_int from doctor_order_print",
+            "sql_param": "select doc.doctor_order_print_code, sd.stock_draw_type_id,sd.warehouse_id,sd.department_id, sd.stock_draw_ref_no, doc.doctor_name, doc.doctor_order_print_date_time,si.update_datetime from hos.doctor_order_print as doc inner join hos.stock_item as si on si.icode = doc.icode inner join hos.stock_draw_item sdi on si.item_id = sdi.item_id inner join hos.stock_draw sd on sd.stock_draw_id = sdi.stock_draw_id",
+            "sql_param_id": "doctor_order_print_code",
+            "sql_param_name": "doctor_order_print_code",
+            "sql_body_id": "doctor_order_print_code",
+            "sql_body_name": "doc.doctor_order_print_code"
+        }
+    }
+}

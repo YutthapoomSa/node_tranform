@@ -1,0 +1,57 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/purchaseorder/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku": "icode", 
+        "name": "item_name", 
+        "qty": "stock_po_qty", 
+        "tradename": "trade_name", 
+        "unittext": "item_unit", 
+        "pricepernumber": "stock_po_price", 
+        "discountitem": {
+            "value":"0"
+          }, 
+        "discountitemamount": {
+            "value":"0"
+          }, 
+        "totalprice": "stock_po_total", 
+        "remark": "remark" 
+    },
+    "param": {
+        "pono": "stock_po_id", 
+        "customercode": "supplier_id", 
+        "customername": "supplier_name", 
+        "customeemail": "supplier_email", 
+        "customerphone": "supplier_phone", 
+        "customeraddress": "supplier_address1", 
+        "reference": "stock_po_no", 
+        "warehouse": "warehouse_name", 
+        "status": "paid_status_name", 
+        "amount": "po_amount", 
+        "vatamount": "stock_po_vat", 
+        "purchaseorderdate": "stock_po_date", 
+        "description": "note", 
+        "discount": "stock_po_discount", 
+        "discountamount": "stock_po_discount_total", 
+        "vatpercent": {
+            "value":null
+        },  
+        "createusername": {
+            "value":null
+        },
+        "purchasetypename": "purchase_type_name", 
+        "budgetname": "budget_name", 
+        "budgetyear": "bdg_year" 
+    },
+    "sql_param": "select po.stock_po_no,po.stock_po_id ,sp.supplier_name,sp.supplier_email,sp.supplier_phone,sp.supplier_address1,po.reference_id,ps.paid_status_name,po.po_amount,po.stock_po_vat,po.stock_po_date,po.note,po.stock_po_discount, po.stock_po_discount_total,pt.purchase_type_name,bg.budget_name,po.bdg_year,wh.warehouse_name from stock_po po left join stock_supplier sp on po.supplier_id = sp.supplier_id left join stock_paid_status as ps on ps.paid_status_id = po.paid_status_id left join stock_purchase_type as pt on pt.purchase_type = po.purchase_type left join stock_budget as bg on bg.budget_id = po.budget_id left join stock_warehouse as wh on wh.warehouse_id = po.warehouse_id",
+    "sql_body": "select spd.stock_po_id,si.icode,si.item_name,spd.stock_po_qty,si.item_unit,spd.stock_po_price,spd.stock_po_total,spd.remark from stock_po_detail spd left join stock_item si on  spd.item_id = si.item_id ",
+    "sql_param_id": "stock_po_id",
+    "sql_body_id": "stock_po_id",
+    "sql_param_name": "stock_po_id",
+    "sql_body_name": "stock_po_id"   
+}

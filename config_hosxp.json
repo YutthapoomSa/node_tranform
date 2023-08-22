@@ -1,0 +1,940 @@
+{
+    "stock_manual_head": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "item_qty",
+                "unittext": "item_unit_name",
+                "qty_unit": "unit_qty",
+                "pricepernumber": "unit_price",
+                "totalprice": "total_price"
+            },
+            "param": {
+                "orderno": "stock_manual_id",
+                "ordertype": {
+                    "value": "1"
+                },
+                "reference": "doc_no",
+                "whcodesource": "department_id",
+                "whcodedest": {
+                    "value": null
+                },
+                "description": "note",
+                "createusername": "staff",
+                "approveusername": "authorizer",
+                "orderdate": "draw_date",
+                "approvestatus": "status_appove_data",
+                "qty_item": "item_amount",
+                "value": "sum_total_price",
+                "orderstatus": "approve"
+            },
+            "sql_param": "select mh.stock_manual_id , mh.department_id , mh.doc_no ,mh.note, mh.staff ,mh.authorizer, mh.draw_date  , mh.status_appove_data , mh.approve ,ifnull(mi.qty_manual_id,0) as item_amount ,mi.sum_total_price from stock_manual_head as mh left join (select count(stock_manual_id) as qty_manual_id ,stock_manual_id , item_qty ,total_price,sum(total_price) as sum_total_price from stock_manual_item group by stock_manual_id) mi on mi.stock_manual_id = mh.stock_manual_id where mh.approve = 'Y'",
+            "sql_body": "select smi.stock_manual_id,smi. stock_manual_item_id,i.icode, i.item_name ,smi.item_qty,siu.item_unit_name, siu.unit_qty,smi.unit_price,smi.total_price from stock_manual_item smi  left join stock_item i on smi.item_id = i.item_id left join stock_item_unit siu on smi.stock_item_unit_id = siu.stock_item_unit_id left join stock_manual_head smh on smi.stock_manual_id = smh.stock_manual_id where smh.approve = 'Y'",
+            "sql_param_id": "stock_manual_id",
+            "sql_body_id": "stock_manual_id",
+            "sql_param_name": "mh.stock_manual_id",
+            "sql_body_name": "smi.stock_manual_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "item_qty",
+                "unittext": "item_unit_name",
+                "qty_unit": "unit_qty",
+                "pricepernumber": "unit_price",
+                "totalprice": "total_price"
+            },
+            "param": {
+                "orderno": "stock_manual_id",
+                "ordertype": {
+                    "value": "1"
+                },
+                "reference": "doc_no",
+                "whcodesource": "department_id",
+                "whcodedest": {
+                    "value": null
+                },
+                "description": "note",
+                "createusername": "staff",
+                "approveusername": "authorizer",
+                "orderdate": "draw_date",
+                "approvestatus": "status_appove_data",
+                "qty_item": "item_amount",
+                "value": "sum_total_price",
+                "orderstatus": "approve"
+            },
+            "sql_param": "select mh.stock_manual_id , mh.department_id , mh.doc_no ,mh.note, mh.staff ,mh.authorizer, mh.draw_date  , mh.status_appove_data , mh.approve ,ifnull(mi.qty_manual_id,0) as item_amount ,mi.sum_total_price from stock_manual_head as mh left join (select count(stock_manual_id) as qty_manual_id ,stock_manual_id , item_qty ,total_price,sum(total_price) as sum_total_price from stock_manual_item group by stock_manual_id) mi on mi.stock_manual_id = mh.stock_manual_id where mh.approve = 'Y'",
+            "sql_body": "select smi.stock_manual_id,smi. stock_manual_item_id,i.icode, i.item_name ,smi.item_qty,siu.item_unit_name, siu.unit_qty,smi.unit_price,smi.total_price from stock_manual_item smi  left join stock_item i on smi.item_id = i.item_id left join stock_item_unit siu on smi.stock_item_unit_id = siu.stock_item_unit_id left join stock_manual_head smh on smi.stock_manual_id = smh.stock_manual_id where smh.approve = 'Y'",
+            "sql_param_id": "stock_manual_id",
+            "sql_body_id": "stock_manual_id",
+            "sql_param_name": "mh.stock_manual_id",
+            "sql_body_name": "smi.stock_manual_id"
+        }
+    },
+    "stock_item": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/StockMaster/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "description": "item_note",
+                "barcode": "barcode_number",
+                "imagepath": "item_picture",
+                "weight": {
+                    "value": null
+                },
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "unittext": "item_unit",
+                "unit_qty": "unit_qty",
+                "purchaseprice": "unitcost",
+                "unit_price": "unit_cost",
+                "oldcode": "oldcode",
+                "newcode": "newcode",
+                "item_type_group": "item_type_group",
+                "item_use_status": "item_use_status",
+                "reorder_level": "reorder_level",
+                "reorder_qty": "reorder_qty",
+                "item_id": "item_id",
+                "strength": "strength",
+                "dosageform": "dosageform",
+                "drugcode": "did",
+                "tmtid": "sks_drug_code",
+                "item_unit_qty": "item_unit_qty",
+                "maximumstock": {
+                    "value": "0"
+                },
+                "minimumstock": "safety_stock"
+            },
+            "sql_body": "select i.icode ,i.item_name, i.item_note,i.safety_stock, i.barcode_number, i.item_type ,it.item_type_name ,i.item_unit ,iu.unit_qty, nit.unitcost,i.unit_cost, i.oldcode ,i.newcode ,i.item_type_group ,i.item_use_status ,i.reorder_level ,i.reorder_qty ,i.item_id, di.strength , di.dosageform, di.did ,di.sks_drug_code, i.item_unit_qty,sip.item_picture from stock_item i left join stock_item_type it on it.item_type = i.item_type left join stock_item_unit iu on iu.item_id = i.item_id left join drugitems di on di.icode = i.icode left join stock_item_picture sip on i.item_id = sip.item_id left join (select si.icode as icode, di.unitcost as unitcost from stock_item si inner join drugitems di on si.icode = di.icode union select si.icode as icode, ndi.unitcost as unitcost from stock_item si inner join nondrugitems ndi on si.icode = ndi.icode) as nit on i.icode = nit.icode",
+            "sql_body_id": "item_id",
+            "sql_body_name": "i.item_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/StockMaster/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "description": "item_note",
+                "barcode": "barcode_number",
+                "imagepath": "item_picture",
+                "weight": {
+                    "value": null
+                },
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "unittext": "item_unit",
+                "unit_qty": "unit_qty",
+                "purchaseprice": "unitcost",
+                "unit_price": "unit_cost",
+                "oldcode": "oldcode",
+                "newcode": "newcode",
+                "item_type_group": "item_type_group",
+                "item_use_status": "item_use_status",
+                "reorder_level": "reorder_level",
+                "reorder_qty": "reorder_qty",
+                "item_id": "item_id",
+                "strength": "strength",
+                "dosageform": "dosageform",
+                "drugcode": "did",
+                "tmtid": "sks_drug_code",
+                "item_unit_qty": "item_unit_qty",
+                "maximumstock": {
+                    "value": "0"
+                },
+                "minimumstock": "safety_stock"
+            },
+            "sql_body": "select i.icode ,i.item_name, i.item_note,i.safety_stock, i.barcode_number, i.item_type ,it.item_type_name ,i.item_unit ,iu.unit_qty, nit.unitcost,i.unit_cost, i.oldcode ,i.newcode ,i.item_type_group ,i.item_use_status ,i.reorder_level ,i.reorder_qty ,i.item_id, di.strength , di.dosageform, di.did ,di.sks_drug_code, i.item_unit_qty,sip.item_picture from stock_item i left join stock_item_type it on it.item_type = i.item_type left join stock_item_unit iu on iu.item_id = i.item_id left join drugitems di on di.icode = i.icode left join stock_item_picture sip on i.item_id = sip.item_id left join (select si.icode as icode, di.unitcost as unitcost from stock_item si inner join drugitems di on si.icode = di.icode union select si.icode as icode, ndi.unitcost as unitcost from stock_item si inner join nondrugitems ndi on si.icode = ndi.icode) as nit on i.icode = nit.icode",
+            "sql_body_id": "item_id",
+            "sql_body_name": "i.item_id"
+        }
+    },
+    "stock_deliver": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/receive/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "stock_deliver_qty",
+                "unittext": "item_unit",
+                "lot": "stock_deliver_lotno",
+                "expire_date": "stock_deliver_expire"
+            },
+            "param": {
+                "receiveno": "stock_deliver_id",
+                "receivetype": {
+                    "value": null
+                },
+                "reference": "stock_po_no",
+                "reference2": "stock_deliver_no",
+                "warehousecode": {
+                    "value": "1"
+                },
+                "createusername": "officer_id",
+                "receivedatetime": "stock_receive_date",
+                "shippingdate": "stock_deliver_date",
+                "paymentdate": "stock_deliver_paid_date",
+                "receivestatus": "stock_deliver_complete"
+            },
+            "sql_param": "select d.stock_deliver_id, p.stock_po_no, d.stock_deliver_no, d.officer_id, d.stock_receive_date, d.stock_deliver_date,d.stock_deliver_paid_date, d.stock_deliver_complete from stock_deliver as d left join stock_po as p  on  d.stock_po_id = p.stock_po_id",
+            "sql_body": "select spd.item_id, si.item_name,si.item_unit, sdd.stock_deliver_detail_id, sdd.stock_deliver_lotno, sdd.stock_deliver_qty,si.icode,sdd.stock_deliver_expire,sdd.stock_deliver_id,d.stock_deliver_no from stock_deliver_detail sdd left join stock_po_detail spd on sdd.stock_po_detail_id = spd.stock_po_detail_id left join stock_deliver d on d.stock_deliver_id = sdd.stock_deliver_id left join stock_item si on spd.item_id = si.item_id",
+            "sql_param_id": "stock_deliver_id",
+            "sql_body_id": "stock_deliver_id",
+            "sql_param_name": "d.stock_deliver_id",
+            "sql_body_name": "sdd.stock_deliver_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/receive/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "stock_deliver_qty",
+                "unittext": "item_unit",
+                "lot": "stock_deliver_lotno",
+                "expire_date": "stock_deliver_expire"
+            },
+            "param": {
+                "receiveno": "stock_deliver_id",
+                "receivetype": {
+                    "value": null
+                },
+                "reference": "stock_po_no",
+                "reference2": "stock_deliver_no",
+                "warehousecode": {
+                    "value": "1"
+                },
+                "createusername": "officer_id",
+                "receivedatetime": "stock_receive_date",
+                "shippingdate": "stock_deliver_date",
+                "paymentdate": "stock_deliver_paid_date",
+                "receivestatus": "stock_deliver_complete"
+            },
+            "sql_param": "select d.stock_deliver_id, p.stock_po_no, d.stock_deliver_no, d.officer_id, d.stock_receive_date, d.stock_deliver_date,d.stock_deliver_paid_date, d.stock_deliver_complete from stock_deliver as d left join stock_po as p  on  d.stock_po_id = p.stock_po_id",
+            "sql_body": "select spd.item_id, si.item_name,si.item_unit, sdd.stock_deliver_detail_id, sdd.stock_deliver_lotno, sdd.stock_deliver_qty,si.icode,sdd.stock_deliver_expire,sdd.stock_deliver_id,d.stock_deliver_no from stock_deliver_detail sdd left join stock_po_detail spd on sdd.stock_po_detail_id = spd.stock_po_detail_id left join stock_deliver d on d.stock_deliver_id = sdd.stock_deliver_id left join stock_item si on spd.item_id = si.item_id",
+            "sql_param_id": "stock_deliver_id",
+            "sql_body_id": "stock_deliver_id",
+            "sql_param_name": "d.stock_deliver_id",
+            "sql_body_name": "sdd.stock_deliver_id"
+        }
+    },
+    "stock_department": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/warehouse/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "wh_code": "department_id",
+                "wh_name": "department_name",
+                "wh_status": "status_active",
+                "wh_type": "department_type",
+                "oldcode": "oldcode"
+            },
+            "sql_body": "select department_id,department_name,status_active,department_type ,oldcode from stock_department",
+            "sql_body_id": "department_id",
+            "sql_body_name": "department_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/warehouse/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "wh_code": "department_id",
+                "wh_name": "department_name",
+                "wh_status": "status_active",
+                "wh_type": "department_type",
+                "oldcode": "oldcode"
+            },
+            "sql_body": "select department_id,department_name,status_active,department_type ,oldcode from stock_department",
+            "sql_body_id": "department_id",
+            "sql_body_name": "department_id"
+        }
+    },
+    "stock_item_type": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/category/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "categorystatus": {
+                    "value": true
+                }
+            },
+            "sql": "select * from stock_item_type",
+            "sql_body_id": "item_type",
+            "sql_body_name": "item_type"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/category/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "categoryid": "item_type",
+                "category": "item_type_name",
+                "categorystatus": {
+                    "value": true
+                }
+            },
+            "sql": "select * from stock_item_type",
+            "sql_body_id": "item_type",
+            "sql_body_name": "item_type"
+        }
+    },
+    "stock_po": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/purchaseorder/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "stock_po_qty",
+                "tradename": "trade_name",
+                "unittext": "item_unit",
+                "pricepernumber": "stock_po_price",
+                "discountitem": {
+                    "value": "0"
+                },
+                "discountitemamount": {
+                    "value": "0"
+                },
+                "totalprice": "stock_po_total",
+                "remark": "remark"
+            },
+            "param": {
+                "pono": "stock_po_id",
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customeemail": "supplier_email",
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": "stock_po_no",
+                "warehouse": "warehouse_name",
+                "status": "paid_status_name",
+                "amount": "po_amount",
+                "vatamount": "stock_po_vat",
+                "purchaseorderdate": "stock_po_date",
+                "description": "note",
+                "discount": "stock_po_discount",
+                "discountamount": "stock_po_discount_total",
+                "vatpercent": {
+                    "value": null
+                },
+                "createusername": {
+                    "value": null
+                },
+                "purchasetypename": "purchase_type_name",
+                "budgetname": "budget_name",
+                "budgetyear": "bdg_year"
+            },
+            "sql_param": "select po.stock_po_no,po.stock_po_id ,sp.supplier_name,sp.supplier_email,sp.supplier_phone,sp.supplier_address1,po.reference_id,ps.paid_status_name,po.po_amount,po.stock_po_vat,po.stock_po_date,po.note,po.stock_po_discount, po.stock_po_discount_total,pt.purchase_type_name,bg.budget_name,po.bdg_year,wh.warehouse_name from stock_po po left join stock_supplier sp on po.supplier_id = sp.supplier_id left join stock_paid_status as ps on ps.paid_status_id = po.paid_status_id left join stock_purchase_type as pt on pt.purchase_type = po.purchase_type left join stock_budget as bg on bg.budget_id = po.budget_id left join stock_warehouse as wh on wh.warehouse_id = po.warehouse_id",
+            "sql_body": "select spd.stock_po_id,si.icode,si.item_name,spd.stock_po_qty,si.item_unit,spd.stock_po_price,spd.stock_po_total,spd.remark from stock_po_detail spd left join stock_item si on  spd.item_id = si.item_id",
+            "sql_param_id": "stock_po_id",
+            "sql_body_id": "stock_po_id",
+            "sql_param_name": "po.stock_po_id",
+            "sql_body_name": "spd.stock_po_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/purchaseorder/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "stock_po_qty",
+                "tradename": "trade_name",
+                "unittext": "item_unit",
+                "pricepernumber": "stock_po_price",
+                "discountitem": {
+                    "value": "0"
+                },
+                "discountitemamount": {
+                    "value": "0"
+                },
+                "totalprice": "stock_po_total",
+                "remark": "remark"
+            },
+            "param": {
+                "pono": "stock_po_id",
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customeemail": "supplier_email",
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": "stock_po_no",
+                "warehouse": "warehouse_name",
+                "status": "paid_status_name",
+                "amount": "po_amount",
+                "vatamount": "stock_po_vat",
+                "purchaseorderdate": "stock_po_date",
+                "description": "note",
+                "discount": "stock_po_discount",
+                "discountamount": "stock_po_discount_total",
+                "vatpercent": {
+                    "value": null
+                },
+                "createusername": {
+                    "value": null
+                },
+                "purchasetypename": "purchase_type_name",
+                "budgetname": "budget_name",
+                "budgetyear": "bdg_year"
+            },
+            "sql_param": "select po.stock_po_no,po.stock_po_id ,sp.supplier_name,sp.supplier_email,sp.supplier_phone,sp.supplier_address1,po.reference_id,ps.paid_status_name,po.po_amount,po.stock_po_vat,po.stock_po_date,po.note,po.stock_po_discount, po.stock_po_discount_total,pt.purchase_type_name,bg.budget_name,po.bdg_year,wh.warehouse_name from stock_po po left join stock_supplier sp on po.supplier_id = sp.supplier_id left join stock_paid_status as ps on ps.paid_status_id = po.paid_status_id left join stock_purchase_type as pt on pt.purchase_type = po.purchase_type left join stock_budget as bg on bg.budget_id = po.budget_id left join stock_warehouse as wh on wh.warehouse_id = po.warehouse_id",
+            "sql_body": "select spd.stock_po_id,si.icode,si.item_name,spd.stock_po_qty,si.item_unit,spd.stock_po_price,spd.stock_po_total,spd.remark from stock_po_detail spd left join stock_item si on  spd.item_id = si.item_id",
+            "sql_param_id": "stock_po_id",
+            "sql_body_id": "stock_po_id",
+            "sql_param_name": "po.stock_po_id",
+            "sql_body_name": "spd.stock_po_id"
+        }
+    },
+    "stock_request": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/pr/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "request_qty",
+                "unittext": "item_unit",
+                "pricepernumber": "request_list_unit_price",
+                "discount": "stock_request_item_discount",
+                "discountamount": "stock_request_item_money_discount",
+                "totalprice": "request_list_total_price",
+                "qty_package": "stock_package_qty",
+                "qty_balance": "incoming_balance_qty",
+                "remark": "remark"
+            },
+            "param": {
+                "prno": "request_id",
+                "customerid": "supplier_id",
+                "customercode": "supplier_oldcode",
+                "customername": "supplier_name",
+                "customeemail": "supplier_email",
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": "request_no",
+                "warehouse": "request_warehouse_id",
+                "status": "request_complete",
+                "amount": "request_total_price",
+                "vatamount": {
+                    "value": null
+                },
+                "shippingamount": {
+                    "value": null
+                },
+                "shippingvat": {
+                    "value": null
+                },
+                "usedate": "use_date",
+                "prdate": "request_date",
+                "description": "note",
+                "discount": {
+                    "value": null
+                },
+                "discountamount": {
+                    "value": null
+                },
+                "vatpercent": "vat_percent",
+                "createusername": {
+                    "value": null
+                }
+            },
+            "sql_param": "select sr.request_id, sr.supplier_id, s.supplier_oldcode, s.supplier_name, s.supplier_email, s.supplier_phone, s.supplier_address1,sr.request_no, sr.request_warehouse_id, sr.request_complete, sr.request_total_price, sr.use_date, sr.request_date, sr.note, sr.vat_percent from stock_request sr left join stock_supplier s on sr.supplier_id = s.supplier_id",
+            "sql_body": "select srl.request_id,si.icode, si.item_name, srl.request_qty, si.item_unit, srl.request_list_unit_price,srl.stock_request_item_discount,srl.stock_request_item_money_discount,srl.request_list_total_price, srl.stock_package_qty,srl.incoming_balance_qty,srl.remark from stock_request_list srl left join stock_item si on srl.item_id = si.item_id where srl.item_id != 2053 and srl.item_id is not null",
+            "sql_param_id": "request_id",
+            "sql_body_id": "request_id",
+            "sql_param_name": "sr.request_id",
+            "sql_body_name": "srl.request_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/pr/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "request_qty",
+                "unittext": "item_unit",
+                "pricepernumber": "request_list_unit_price",
+                "discount": "stock_request_item_discount",
+                "discountamount": "stock_request_item_money_discount",
+                "totalprice": "request_list_total_price",
+                "qty_package": "stock_package_qty",
+                "qty_balance": "incoming_balance_qty",
+                "remark": "remark"
+            },
+            "param": {
+                "prno": "request_id",
+                "customerid": "supplier_id",
+                "customercode": "supplier_oldcode",
+                "customername": "supplier_name",
+                "customeemail": "supplier_email",
+                "customerphone": "supplier_phone",
+                "customeraddress": "supplier_address1",
+                "reference": "request_no",
+                "warehouse": "request_warehouse_id",
+                "status": "request_complete",
+                "amount": "request_total_price",
+                "vatamount": {
+                    "value": null
+                },
+                "shippingamount": {
+                    "value": null
+                },
+                "shippingvat": {
+                    "value": null
+                },
+                "usedate": "use_date",
+                "prdate": "request_date",
+                "description": "note",
+                "discount": {
+                    "value": null
+                },
+                "discountamount": {
+                    "value": null
+                },
+                "vatpercent": "vat_percent",
+                "createusername": {
+                    "value": null
+                }
+            },
+            "sql_param": "select sr.request_id, sr.supplier_id, s.supplier_oldcode, s.supplier_name, s.supplier_email, s.supplier_phone, s.supplier_address1, sr.request_no, sr.request_warehouse_id, sr.request_complete, sr.request_total_price, sr.use_date, sr.request_date, sr.note, sr.vat_percent from stock_request sr left join stock_supplier s on sr.supplier_id = s.supplier_id",
+            "sql_body": "select srl.request_id,si.icode, si.item_name, srl.request_qty, si.item_unit, srl.request_list_unit_price,srl.stock_request_item_discount,srl.stock_request_item_money_discount,srl.request_list_total_price, srl.stock_package_qty,srl.incoming_balance_qty,srl.remark from stock_request_list srl left join stock_item si on srl.item_id = si.item_id where srl.item_id != 2053 and srl.item_id is not null",
+            "sql_param_id": "request_id",
+            "sql_body_id": "request_id",
+            "sql_param_name": "sr.request_id",
+            "sql_body_name": "srl.request_id"
+        }
+    },
+    "stock_subdraw": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "stock_package_qty",
+                "unittext": "item_unit",
+                "qty_unit": "stock_subdraw_qty",
+                "pricepernumber": "stock_subdraw_unitcost",
+                "totalprice": "stock_subdraw_price"
+            },
+            "param": {
+                "orderno": "stock_subdraw_id",
+                "ordertype": {
+                    "value": "0"
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "warehouse_id",
+                "whcodedest": "department_id",
+                "description": "subdraw_note",
+                "createusername": "stock_subdraw_officer_name",
+                "approveusername": "stock_subdraw_approve_name",
+                "orderdate": "stock_subdraw_date",
+                "approvestatus": "stock_subdraw_approve",
+                "qty_item": "item_count",
+                "value": "total_price",
+                "orderstatus": "stock_subdraw_complete"
+            },
+            "sql_param": "select stock_subdraw_id,stock_draw_ref_no ,warehouse_id,department_id,subdraw_note,stock_subdraw_officer_name,stock_subdraw_approve_name,stock_subdraw_approve_date,stock_subdraw_approve,item_count,total_price ,stock_subdraw_complete,stock_subdraw_date from stock_subdraw where stock_subdraw_complete = 'Y'",
+            "sql_body": "select i.icode , i.item_name , sl.stock_package_qty ,i.item_unit, sl.stock_subdraw_qty ,sl.stock_subdraw_unitcost ,sl.stock_subdraw_price,sl.stock_subdraw_id from stock_subdraw_list as sl left join stock_item as i on i.item_id =sl.item_id ",
+            "sql_param_id": "stock_subdraw_id",
+            "sql_body_id": "stock_subdraw_id",
+            "sql_param_name": "stock_subdraw_id",
+            "sql_body_name": "sl.stock_subdraw_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "item_name",
+                "qty": "stock_package_qty",
+                "unittext": "item_unit",
+                "qty_unit": "stock_subdraw_qty",
+                "pricepernumber": "stock_subdraw_unitcost",
+                "totalprice": "stock_subdraw_price"
+            },
+            "param": {
+                "orderno": "stock_subdraw_id",
+                "ordertype": {
+                    "value": "0"
+                },
+                "reference": "stock_draw_ref_no",
+                "whcodesource": "warehouse_id",
+                "whcodedest": "department_id",
+                "description": "subdraw_note",
+                "createusername": "stock_subdraw_officer_name",
+                "approveusername": "stock_subdraw_approve_name",
+                "orderdate": "stock_subdraw_date",
+                "approvestatus": "stock_subdraw_approve",
+                "qty_item": "item_count",
+                "value": "total_price",
+                "orderstatus": "stock_subdraw_complete"
+            },
+            "sql_param": "select stock_subdraw_id,stock_draw_ref_no ,warehouse_id,department_id,subdraw_note,stock_subdraw_officer_name,stock_subdraw_approve_name,stock_subdraw_approve_date,stock_subdraw_approve,item_count,total_price ,stock_subdraw_complete,stock_subdraw_date from stock_subdraw where stock_subdraw_complete = 'Y'",
+            "sql_body": "select i.icode , i.item_name , sl.stock_package_qty ,i.item_unit, sl.stock_subdraw_qty ,sl.stock_subdraw_unitcost ,sl.stock_subdraw_price,sl.stock_subdraw_id from stock_subdraw_list as sl left join stock_item as i on i.item_id =sl.item_id",
+            "sql_param_id": "stock_subdraw_id",
+            "sql_body_id": "stock_subdraw_id",
+            "sql_param_name": "stock_subdraw_id",
+            "sql_body_name": "sl.stock_subdraw_id"
+        }
+    },
+    "stock_supplier": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/customer/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customerphone": "supplier_phone",
+                "customeemail": "supplier_email",
+                "customeraddress": "supplier_address1",
+                "customertax": "supplier_tax_no",
+                "categorystatus": {
+                    "value": null
+                },
+                "customeroldcode": "supplier_oldcode",
+                "customeraddress2": "supplier_address2",
+                "customerfax": "supplier_fax",
+                "agentname": "supplier_agent_name",
+                "agentcontact": "supplier_agent_contact",
+                "customercredit": "supplier_credit",
+                "discount": "supplier_discount",
+                "customernote": "supplier_note"
+            },
+            "sql_body": "select supplier_id,supplier_name ,supplier_phone ,supplier_email, supplier_address1,supplier_tax_no,supplier_oldcode,supplier_address2,supplier_fax,supplier_agent_name,supplier_agent_contact,supplier_credit,supplier_discount,supplier_note from stock_supplier",
+            "sql_body_id": "supplier_id",
+            "sql_body_name": "supplier_id"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/customer/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "customercode": "supplier_id",
+                "customername": "supplier_name",
+                "customerphone": "supplier_phone",
+                "customeemail": "supplier_email",
+                "customeraddress": "supplier_address1",
+                "customertax": "supplier_tax_no",
+                "categorystatus": {
+                    "value": null
+                },
+                "customeroldcode": "supplier_oldcode",
+                "customeraddress2": "supplier_address2",
+                "customerfax": "supplier_fax",
+                "agentname": "supplier_agent_name",
+                "agentcontact": "supplier_agent_contact",
+                "customercredit": "supplier_credit",
+                "discount": "supplier_discount",
+                "customernote": "supplier_note"
+            },
+            "sql_body": "select supplier_id,supplier_name ,supplier_phone ,supplier_email, supplier_address1,supplier_tax_no,supplier_oldcode,supplier_address2,supplier_fax,supplier_agent_name,supplier_agent_contact,supplier_credit,supplier_discount,supplier_note from stock_supplier",
+            "sql_body_id": "supplier_id",
+            "sql_body_name": "supplier_id"
+        }
+    },
+    "doctor_order_print_vn": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/create",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "name",
+                "qty": "qty",
+                "unittext": "item_unit",
+                "qty_unit": {
+                    "value": null
+                },
+                "pricepernumber": "unitprice",
+                "totalprice": "sum_price"
+            },
+            "param": {
+                "orderno": "orderno",
+                "ordertype": {
+                    "value": "2"
+                },
+                "reference": "vn",
+                "whcodesource": "stock_department_id",
+                "whcodedest": "dep_code",
+                "description": {
+                    "value": null
+                },
+                "createusername": "doctor",
+                "approveusername": {
+                    "value": null
+                },
+                "orderdate": "rxdate",
+                "approvestatus": {
+                    "value": null
+                },
+                "qty_item": {
+                    "value": null
+                },
+                "value": {
+                    "value": null
+                }
+            },
+            "sql_body": "select op.vn, op.hn, op.an, op.icode , op.qty , sim.price as unitprice ,sim.name ,sim.item_unit ,op.sum_price , op.finance_number ,op.hos_guid from opitemrece op left join (select di.icode as icode, di.name as name ,di.units as item_unit , di.unitprice as price from drugitems di union select ndi.icode as icode, ndi.name as name , ndi.unit as item_unit , ndi.price as price from nondrugitems ndi) sim on op.icode = sim.icode",
+            "sql_param": "select CONCAT(op.vn,'/',op.finance_number) as orderno,op.vn, op.hn, op.an, op.dep_code, k.department , op.doctor , op.stock_department_id , op.rxdate , op.rxtime , rp.finance_number ,CAST(concat(op.rxdate,' ',TIME_FORMAT(op.rxtime , '%H:%i:%s')) AS datetime) AS rx_datetime from opitemrece op left join kskdepartment k on k.depcode = op.dep_code left join rcpt_print rp on op.finance_number = rp.finance_number",
+            "sql_param_id": "vn",
+            "sql_body_id": "vn",
+            "sql_param_name": "op.vn",
+            "sql_body_name": "op.vn"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "name",
+                "qty": "qty",
+                "unittext": "item_unit",
+                "qty_unit": {
+                    "value": null
+                },
+                "pricepernumber": "unitprice",
+                "totalprice": "sum_price"
+            },
+            "param": {
+                "orderno": "orderno",
+                "ordertype": {
+                    "value": "2"
+                },
+                "reference": "vn",
+                "whcodesource": "stock_department_id",
+                "whcodedest": "dep_code",
+                "description": {
+                    "value": null
+                },
+                "createusername": "doctor",
+                "approveusername": {
+                    "value": null
+                },
+                "orderdate": "rxdate",
+                "approvestatus": {
+                    "value": null
+                },
+                "qty_item": {
+                    "value": null
+                },
+                "value": {
+                    "value": null
+                }
+            },
+            "sql_body": "select op.vn, op.hn, op.an, op.icode , op.qty , sim.price as unitprice ,sim.name ,sim.item_unit ,op.sum_price , op.finance_number ,op.hos_guid from opitemrece op left join (select di.icode as icode, di.name as name ,di.units as item_unit , di.unitprice as price from drugitems di union select ndi.icode as icode, ndi.name as name , ndi.unit as item_unit , ndi.price as price from nondrugitems ndi) sim on op.icode = sim.icode",
+            "sql_param": "select CONCAT(op.vn,'/',op.finance_number) as orderno,op.vn, op.hn, op.an, op.dep_code, k.department , op.doctor , op.stock_department_id , op.rxdate , op.rxtime , rp.finance_number ,CAST(concat(op.rxdate,' ',TIME_FORMAT(op.rxtime , '%H:%i:%s')) AS datetime) AS rx_datetime from opitemrece op left join kskdepartment k on k.depcode = op.dep_code left join rcpt_print rp on op.finance_number = rp.finance_number",
+            "sql_param_id": "vn",
+            "sql_body_id": "vn",
+            "sql_param_name": "op.vn",
+            "sql_body_name": "op.vn"
+        }
+    },
+    "doctor_order_print_an": {
+        "insert": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "name",
+                "qty": "qty",
+                "unittext": "item_unit",
+                "qty_unit": {
+                    "value": null
+                },
+                "pricepernumber": "unitprice",
+                "totalprice": "sum_price"
+            },
+            "param": {
+                "orderno": "orderno",
+                "ordertype": {
+                    "value": "2"
+                },
+                "reference": "an",
+                "whcodesource": "stock_department_id",
+                "whcodedest": "dep_code",
+                "description": {
+                    "value": null
+                },
+                "createusername": "doctor",
+                "approveusername": {
+                    "value": null
+                },
+                "orderdate": "rxdate",
+                "approvestatus": "",
+                "qty_item": {
+                    "value": null
+                },
+                "value": {
+                    "value": null
+                }
+            },
+            "sql_body": "select op.vn, op.hn, op.an, op.icode , op.qty , sim.price as unitprice ,sim.name ,sim.item_unit ,op.sum_price , op.finance_number ,op.hos_guid from opitemrece op left join (select di.icode as icode, di.name as name ,di.units as item_unit , di.unitprice as price from drugitems di union select ndi.icode as icode, ndi.name as name , ndi.unit as item_unit , ndi.price as price from nondrugitems ndi) sim on op.icode = sim.icode",
+            "sql_param": "select CONCAT(op.an,'/',op.order_no) as orderno,op.vn, op.hn, op.an, op.dep_code, k.department , op.doctor , op.stock_department_id , op.rxdate , op.rxtime , ipo.order_no ,CAST(concat(op.rxdate,' ',TIME_FORMAT(op.rxtime , '%H:%i:%s')) AS datetime) AS rx_datetime from opitemrece as op left join kskdepartment k on k.depcode = op.dep_code left join ipt_order_no ipo on ipo.hos_guid = op.hos_guid",
+            "sql_param_id": "an",
+            "sql_body_id": "an",
+            "sql_param_name": "op.an",
+            "sql_body_name": "op.an"
+        },
+        "update": {
+            "endpoint": "http://10.10.10.1/FWH/api/order/update",
+            "method": "POST",
+            "header": {
+                "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+                "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "sku": "icode",
+                "name": "name",
+                "qty": "qty",
+                "unittext": "item_unit",
+                "qty_unit": {
+                    "value": null
+                },
+                "pricepernumber": "unitprice",
+                "totalprice": "sum_price"
+            },
+            "param": {
+                "orderno": "orderno",
+                "ordertype": {
+                    "value": "2"
+                },
+                "reference": "an",
+                "whcodesource": "stock_department_id",
+                "whcodedest": "dep_code",
+                "description": {
+                    "value": null
+                },
+                "createusername": "doctor",
+                "approveusername": {
+                    "value": null
+                },
+                "orderdate": "rxdate",
+                "approvestatus": "",
+                "qty_item": {
+                    "value": null
+                },
+                "value": {
+                    "value": null
+                }
+            },
+            "sql_body": "select op.vn, op.hn, op.an, op.icode , op.qty , sim.price as unitprice ,sim.name ,sim.item_unit ,op.sum_price , op.finance_number ,op.hos_guid from opitemrece op left join (select di.icode as icode, di.name as name ,di.units as item_unit , di.unitprice as price from drugitems di union select ndi.icode as icode, ndi.name as name , ndi.unit as item_unit , ndi.price as price from nondrugitems ndi) sim on op.icode = sim.icode",
+            "sql_param": "select CONCAT(op.an,'/',op.order_no) as orderno,op.vn, op.hn, op.an, op.dep_code, k.department , op.doctor , op.stock_department_id , op.rxdate , op.rxtime , ipo.order_no ,CAST(concat(op.rxdate,' ',TIME_FORMAT(op.rxtime , '%H:%i:%s')) AS datetime) AS rx_datetime from opitemrece as op left join kskdepartment k on k.depcode = op.dep_code left join ipt_order_no ipo on ipo.hos_guid = op.hos_guid",
+            "sql_param_id": "an",
+            "sql_body_id": "an",
+            "sql_param_name": "op.an",
+            "sql_body_name": "op.an"
+        }
+    }
+}

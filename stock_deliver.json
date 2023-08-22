@@ -1,0 +1,40 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/receive/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku":"icode",                                                                                                                                                                                                                            
+      	"name":"item_name",
+      	"qty":"stock_deliver_qty",
+      	"unittext":"item_unit",
+      	"lot":"stock_deliver_lotno",
+      	"expire_date":"stock_deliver_expire"
+        
+    },
+    "param": {
+      	"receiveno": "stock_deliver_id",
+      	"receivetype":{
+            "value":null
+        },
+        "reference": "stock_po_no", 
+  			"reference2": "stock_deliver_no",
+      	"warehousecode":{
+          "value":"1"
+        },
+        "createusername": "officer_id",
+      	"receivedatetime":"stock_receive_date",
+  		"shippingdate": "stock_deliver_date",
+      	"paymentdate":"stock_deliver_paid_date",
+        "receivestatus" : "stock_deliver_complete"
+    },
+    "sql_param": "select d.stock_deliver_id, p.stock_po_no, d.stock_deliver_no, d.officer_id, d.stock_receive_date, d.stock_deliver_date, d.stock_deliver_paid_date, d.stock_deliver_complete from stock_deliver as d left join stock_po as p  on  d.stock_po_id = p.stock_po_id",
+    "sql_body": "select spd.item_id, si.item_name,si.item_unit, sdd.stock_deliver_detail_id, sdd.stock_deliver_lotno, sdd.stock_deliver_qty,si.icode,sdd.stock_deliver_expire,sdd.stock_deliver_id,d.stock_deliver_no from stock_deliver_detail sdd left join stock_po_detail spd on sdd.stock_po_detail_id = spd.stock_po_detail_id left join stock_deliver d on d.stock_deliver_id = sdd.stock_deliver_id left join stock_item si on spd.item_id = si.item_id",
+    "sql_param_id": "stock_deliver_id",
+    "sql_body_id": "stock_deliver_id",
+    "sql_param_name": "stock_deliver_id",
+    "sql_body_name": "stock_deliver_id"
+}

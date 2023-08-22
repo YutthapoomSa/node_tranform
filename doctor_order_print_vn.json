@@ -1,0 +1,52 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/order/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku": "icode", 
+        "name": "name", 
+        "qty": "qty", 
+        "unittext": "item_unit", 
+        "qty_unit":{
+            "value": null
+        }, 
+        "pricepernumber": "unitprice", 
+        "totalprice": "sum_price" 
+    },
+    "param": {
+        "orderno": "orderno", 
+        "ordertype": {
+            "value": "2"
+        },
+        "reference": "vn",  
+        "whcodesource": "stock_department_id",
+        "whcodedest": "dep_code",
+        "description": {
+            "value": null
+        }, 
+        "createusername": "doctor", 
+        "approveusername": {
+            "value": null
+        },
+        "orderdate": "rxdate", 
+        "approvestatus": { 
+            "value": null
+        },  
+        "qty_item": {
+            "value": null
+        },
+        "value": {
+            "value": null
+        }
+    },
+    "sql_body": "select op.vn, op.hn, op.an, op.icode , op.qty , sim.price as unitprice ,sim.name ,sim.item_unit ,op.sum_price , op.finance_number ,op.hos_guid from opitemrece op left join (select di.icode as icode, di.name as name ,di.units as item_unit , di.unitprice as price from drugitems di union select ndi.icode as icode, ndi.name as name , ndi.unit as item_unit , ndi.price as price from nondrugitems ndi) sim on op.icode = sim.icode",
+    "sql_param": "select CONCAT(op.vn,'/',op.finance_number) as orderno,op.vn, op.hn, op.an, op.dep_code, k.department , op.doctor , op.stock_department_id , op.rxdate , op.rxtime , rp.finance_number ,CAST(concat(op.rxdate,' ',TIME_FORMAT(op.rxtime , '%H:%i:%s')) AS datetime) AS rx_datetime from opitemrece op left join kskdepartment k on k.depcode = op.dep_code left join rcpt_print rp on op.finance_number = rp.finance_number",
+    "sql_param_id": "vn",
+    "sql_body_id": "vn",
+    "sql_param_name": "op.vn",
+    "sql_body_name": "op.vn"
+}

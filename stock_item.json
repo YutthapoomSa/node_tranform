@@ -1,0 +1,42 @@
+{
+  "endpoint": "http://10.10.10.1/FWH/api/StockMaster/",
+  "method": "POST",
+  "header": {
+      "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+      "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+      "Content-Type": "application/json"
+  },
+  "body": {
+    "sku":"icode",
+    "name":"item_name",
+    "description":"item_note",
+    "barcode":"barcode_number",
+    "imagepath":"item_picture",
+    "weight":{
+      "value":null
+    },
+    "categoryid":"item_type",
+    "category":"item_type_name",
+    "unittext":"item_unit",
+    "unit_qty":"unit_qty",
+    "purchaseprice":"unitcost",
+    "unit_price":"unit_cost",
+    "oldcode":"oldcode",
+    "newcode":"newcode",
+    "item_type_group":"item_type_group",
+    "item_use_status":"item_use_status",
+    "reorder_level":"reorder_level",
+    "reorder_qty":"reorder_qty",
+    "item_id":"item_id",
+    "strength":"strength",
+    "dosageform":"dosageform",
+    "drugcode":"did",
+    "tmtid":"sks_drug_code",
+    "item_unit_qty":"item_unit_qty",
+    "maximumstock":{
+      "value":"0"
+      },
+    "minimumstock":"safety_stock"
+  },
+  "sql_body":"select i.icode ,i.item_name, i.item_note,i.safety_stock, i.barcode_number, i.item_type ,it.item_type_name ,i.item_unit ,iu.unit_qty, nit.unitcost,i.unit_cost, i.oldcode ,i.newcode ,i.item_type_group ,i.item_use_status ,i.reorder_level ,i.reorder_qty ,i.item_id, di.strength , di.dosageform, di.did ,di.sks_drug_code, i.item_unit_qty,sip.item_picture from stock_item i left join stock_item_type it on it.item_type = i.item_type left join stock_item_unit iu on iu.item_id = i.item_id left join drugitems di on di.icode = i.icode left join stock_item_picture sip on i.item_id = sip.item_id left join (select si.icode as icode, di.unitcost as unitcost from stock_item si inner join drugitems di on si.icode = di.icode union select si.icode as icode, ndi.unitcost as unitcost from stock_item si inner join nondrugitems ndi on si.icode = ndi.icode) as nit on i.icode = nit.icode where i.icode is not null"
+}

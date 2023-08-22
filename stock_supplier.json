@@ -1,0 +1,31 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/customer/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "customercode": "supplier_id", 
+        "customername": "supplier_name", 
+        "customerphone": "supplier_phone", 
+        "customeemail": "supplier_email", 
+        "customeraddress": "supplier_address1", 
+        "customertax": "supplier_tax_no", 
+        "categorystatus": {
+            "value":null
+        },
+        "customeroldcode": "supplier_oldcode", 
+        "customeraddress2": "supplier_address2", 
+        "customerfax": "supplier_fax", 
+        "agentname": "supplier_agent_name", 
+        "agentcontact": "supplier_agent_contact", 
+        "customercredit": "supplier_credit", 
+        "discount": "supplier_discount", 
+        "customernote": "supplier_note" 
+    },
+    "sql_body": "select supplier_id,supplier_name ,supplier_phone ,supplier_email, supplier_address1,supplier_tax_no,supplier_oldcode,supplier_address2,supplier_fax,supplier_agent_name,supplier_agent_contact,supplier_credit,supplier_discount,supplier_note from stock_supplier",
+    "sql_body_id": "supplier_id",
+    "sql_body_name": "supplier_id"
+}

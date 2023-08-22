@@ -1,0 +1,17 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/category/",
+    "method": "POST",
+    "header": { 
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=", 
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=", 
+        "Content-Type": "application/json"
+      },
+    "body":{
+        "categoryid": "item_type",
+        "category": "item_type_name",
+        "categorystatus": {
+            "value": true
+        }
+    },
+    "sql": "select * from stock_item_type"
+}

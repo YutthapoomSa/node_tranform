@@ -1,0 +1,48 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/order/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku": "icode", 
+        "name": "name", 
+        "qty": "qty", 
+        "unittext": "item_unit", 
+        "qty_unit": {
+            "value": null
+        }, 
+        "pricepernumber": "unitprice", 
+        "totalprice": "sum_price" 
+    },
+    "param": {
+        "orderno": "orderno_new", 
+        "ordertype": {
+            "value": "2"
+        },
+        "reference": "an",  
+        "whcodesource": "stock_department_id",
+        "whcodedest": "dep_code",
+        "description": {
+            "value": null
+        },
+        "createusername": "doctor", 
+        "approveusername":"staff",
+        "orderdate": "rxdate", 
+        "approvestatus": {
+            "value": null
+        },
+        "qty_item":"item_count",
+        "value": {
+            "value": null
+        }
+    },
+    "sql_body": "select io.ipt_order_id,CONCAT(io.an,'/',io.order_no) as orderno_new ,io.an , io.rxdate , io.item_count ,io.order_no , op.qty, op.icode , op.doctor , op.stock_department_id ,op.dep_code ,op.staff from ipt_order_no as io left join opitemrece op on op.order_no = io.order_no and io.an = op.an where year(io.rxdate)> 2009 ",
+    "sql_param": " ",
+    "sql_param_id": "an",
+    "sql_body_id": "an",
+    "sql_param_name": "op.an",
+    "sql_body_name": "op.an"
+}

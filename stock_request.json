@@ -1,0 +1,63 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/pr/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku":"icode",
+      	"name":"item_name",
+      	"qty":"request_qty",
+      	"unittext":"item_unit",
+      	"pricepernumber":"request_list_unit_price",
+      	"discount":"stock_request_item_discount",
+      	"discountamount":"stock_request_item_money_discount",
+      	"totalprice":"request_list_total_price",
+      	"qty_package":"stock_package_qty",
+      	"qty_balance":"incoming_balance_qty",
+      	"remark":"remark"
+    },
+    "param": {
+        "prno":"request_id", 
+      	"customerid":"supplier_id", 
+      	"customercode":"supplier_oldcode",
+      	"customername":"supplier_name",
+      	"customeemail":"supplier_email",
+      	"customerphone":"supplier_phone",
+      	"customeraddress":"supplier_address1",
+      	"reference":"request_no",
+      	"warehouse":"request_warehouse_id",
+      	"status":"request_complete",
+      	"amount":"request_total_price",
+      	"vatamount":{
+            "value":null
+        },
+      	"shippingamount":{
+            "value":null
+        },
+      	"shippingvat":{
+            "value":null
+        },
+      	"usedate":"use_date",
+      	"prdate":"request_date",
+      	"description":"note",
+      	"discount":{
+            "value":null
+        },
+      	"discountamount":{
+            "value":null
+        },
+      	"vatpercent":"vat_percent",
+      	"createusername":{
+            "value":null
+        }
+    },
+    "sql_param": "select sr.request_id, sr.supplier_id, s.supplier_oldcode, s.supplier_name, s.supplier_email, s.supplier_phone, s.supplier_address1,sr.request_no, sr.request_warehouse_id, sr.request_complete, sr.request_total_price, sr.use_date, sr.request_date, sr.note, sr.vat_percent from stock_request sr left join stock_supplier s on sr.supplier_id = s.supplier_id",
+    "sql_body": "select srl.request_id,si.icode, si.item_name, srl.request_qty, si.item_unit, srl.request_list_unit_price,srl.stock_request_item_discount,srl.stock_request_item_money_discount,srl.request_list_total_price, srl.stock_package_qty,srl.incoming_balance_qty,srl.remark from stock_request_list srl left join stock_item si on srl.item_id = si.item_id where srl.item_id != 2053 and srl.item_id is not null",
+    "sql_param_id": "request_id",
+    "sql_body_id": "request_id",
+  	"sql_param_name": "sr.request_id",
+    "sql_body_name": "srl.request_id"
+}

@@ -1,0 +1,50 @@
+[
+    {
+        "receiveno": 5633,
+        "receivetype": "",
+        "reference": "",
+        "reference2": "",
+        "warehousecode": "1",
+        "createusername": "",
+        "receivedatetime": "2011-09-29",
+        "shippingdate": "2011-09-29",
+        "paymentdate": "",
+        "receivestatus": "Y"
+    },
+    {
+        "receiveno": 6092,
+        "receivetype": "",
+        "reference": "",
+        "reference2": "",
+        "warehousecode": "1",
+        "createusername": "",
+        "receivedatetime": "2011-11-11",
+        "shippingdate": "2011-11-11",
+        "paymentdate": "",
+        "receivestatus": "Y"
+    },
+    {
+        "receiveno": 7124,
+        "receivetype": "",
+        "reference": "",
+        "reference2": "",
+        "warehousecode": "1",
+        "createusername": "",
+        "receivedatetime": "2012-02-13",
+        "shippingdate": "2012-02-13",
+        "paymentdate": "",
+        "receivestatus": "Y"
+    },
+    {
+        "receiveno": 7149,
+        "receivetype": "",
+        "reference": "",
+        "reference2": "",
+        "warehousecode": "1",
+        "createusername": "",
+        "receivedatetime": "2012-02-17",
+        "shippingdate": "2012-02-17",
+        "paymentdate": "",
+        "receivestatus": "Y"
+    }
+]

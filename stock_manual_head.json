@@ -1,0 +1,44 @@
+{
+    "endpoint": "http://10.10.10.1/FWH/api/order/",
+    "method": "POST",
+    "header": {
+        "api_key": "4u82c2jwEPmmBuBaVTvNhJs0wuoq1rWL/eyjekdV0=",
+        "api_secret": "YuBHlbMexRSappw2exGVaUohkOlvCT6npe3rDhm30Y=",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "sku":"icode",
+      	"name":"item_name",
+      	"qty":"item_qty",
+      	"unittext":"item_unit_name",
+      	"qty_unit":"unit_qty",
+      	"pricepernumber":"unit_price",
+      	"totalprice":"total_price"
+    },
+    "param": {
+      	"orderno": "stock_manual_id",
+      	"ordertype":{
+          "value":"1"
+        },
+        "reference":"doc_no",
+  			"whcodesource":"department_id",
+      	"whcodedest":{
+          "value":null
+        },
+        "description": "note",
+      	"createusername":"staff",
+  			"approveusername":"authorizer",
+      	"orderdate":"draw_date",
+  			"approvestatus":"status_appove_data",
+      	"qty_item":"item_amount",
+  			"value": "sum_total_price",
+        "orderstatus": "approve"
+    },
+    "sql_param":"select mh.stock_manual_id , mh.department_id , mh.doc_no ,mh.note, mh.staff ,mh.authorizer, mh.draw_date  , mh.status_appove_data , mh.approve ,ifnull(mi.qty_manual_id,0) as item_amount ,mi.sum_total_price from stock_manual_head as mh left join (select count(stock_manual_id) as qty_manual_id ,stock_manual_id , item_qty ,total_price,sum(total_price) as sum_total_price from stock_manual_item group by stock_manual_id) mi on mi.stock_manual_id = mh.stock_manual_id where mh.approve = 'Y'",
+    "sql_body": "select smi.stock_manual_id,smi. stock_manual_item_id,i.icode, i.item_name ,smi.item_qty,siu.item_unit_name, siu.unit_qty,smi.unit_price,smi.total_price from stock_manual_item smi  left join stock_item i on smi.item_id = i.item_id left join stock_item_unit siu on smi.stock_item_unit_id = siu.stock_item_unit_id left join stock_manual_head smh on smi.stock_manual_id = smh.stock_manual_id where smh.approve = 'Y'",
+    "sql_param_id": "stock_manual_id",
+    "sql_body_id": "stock_manual_id",
+    "sql_param_name": "stock_manual_id",
+    "sql_body_name": "stock_manual_id"
+    
+}
